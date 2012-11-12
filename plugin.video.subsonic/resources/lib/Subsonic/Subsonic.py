@@ -1,6 +1,6 @@
 '''
     Subsonic XBMC Plugin
-    Copyright (C) 2011 t0mm0
+    Copyright (C) 2012 nutt318
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ class Subsonic:
         self.server = server
         self.user = user
         self.password = password
-        self.api_version = '1.4.0'
+        self.api_version = '1.8.0'
         self.client_name='xbmc'
         
     def ping(self):
@@ -46,11 +46,11 @@ class Subsonic:
                     Addon.add_directory({'mode': 'list_indexes', 
                                          'folder_id': folder['id']}, 
                                         folder['name'], total_items=total)
-            Addon.add_directory({'mode': 'albums'}, Addon.get_string(30031))
-            Addon.add_directory({'mode': 'search'}, Addon.get_string(30006))
-            Addon.add_directory({'mode': 'list_playlists'}, 
+            #Addon.add_directory({'mode': 'albums'}, Addon.get_string(30031))
+            #Addon.add_directory({'mode': 'search'}, Addon.get_string(30006))
+            #Addon.add_directory({'mode': 'list_playlists'}, 
                                 Addon.get_string(30011))
-            Addon.add_directory({'mode': 'random'}, Addon.get_string(30012))
+            #Addon.add_directory({'mode': 'random'}, Addon.get_string(30012))
             Addon.end_of_directory()
 
     def get_indexes(self, folder_id):

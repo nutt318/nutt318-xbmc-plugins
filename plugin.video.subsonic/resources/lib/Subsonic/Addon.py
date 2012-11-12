@@ -1,6 +1,6 @@
 '''
     Subsonic XBMC Plugin
-    Copyright (C) 2011 t0mm0
+    Copyright (C) 2012 nutt318
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
