@@ -8,6 +8,6 @@
 	<setting id="password" type="text" option="hidden" label="30102" default="guest" />
     <setting type="lsep" label="30103" />
 	<setting id="transcode" type="bool" label="30104" default="true" />
-	<setting id="bitrate" type="enum" label="30105" default="13" values="32k|40k|48k|56k|64k|80k|96k|112k|128k|160k|192k|224k|256k|320k|512K|720K|1024K|1​500K|2048K" enable="eq(-1,true)" />
+	<setting id="bitrate" type="enum" label="30105" default="16" values="32k|40k|48k|56k|64k|80k|96k|112k|128k|160k|192k|224k|256k|320k|512K|720K|1024K|1​500K|2048K" enable="eq(-1,true)" />
   </category>
 </settings>

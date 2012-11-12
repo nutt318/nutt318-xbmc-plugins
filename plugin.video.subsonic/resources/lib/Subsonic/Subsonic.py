@@ -22,7 +22,7 @@ import xbmc
 import Addon
 
 class Subsonic:
-    bitrates = [32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320]
+    bitrates = [32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 512, 720, 1024, 1500, 2048]
     def __init__(self, server, user, password):
         self.server = server
         self.user = user
