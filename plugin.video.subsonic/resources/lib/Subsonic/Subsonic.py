@@ -48,8 +48,7 @@ class Subsonic:
                                         folder['name'], total_items=total)
             #Addon.add_directory({'mode': 'albums'}, Addon.get_string(30031))
             #Addon.add_directory({'mode': 'search'}, Addon.get_string(30006))
-            #Addon.add_directory({'mode': 'list_playlists'}, 
-                                Addon.get_string(30011))
+            #Addon.add_directory({'mode': 'list_playlists'}, Addon.get_string(30011))
             #Addon.add_directory({'mode': 'random'}, Addon.get_string(30012))
             Addon.end_of_directory()
 
