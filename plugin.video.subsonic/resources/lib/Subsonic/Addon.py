@@ -148,6 +148,6 @@ def decode_dict(data):
             data[k] = decode(v)
     return data
 
-addon = xbmcaddon.Addon(id='plugin.audio.subsonic')
+addon = xbmcaddon.Addon(id='plugin.video.subsonic')
 plugin_path = addon.getAddonInfo('path')
 
