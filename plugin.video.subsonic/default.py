@@ -26,7 +26,9 @@ Addon.plugin_queries = Addon.parse_query(sys.argv[2][1:])
 
 subsonic = Subsonic.Subsonic(Addon.get_setting('server'), 
                              Addon.get_setting('user'), 
-                             Addon.get_setting('password'))
+                             Addon.get_setting('password')) 
+                             Addon.get_setting('emailserver'))
+
 
 Addon.log('plugin queries: ' + str(Addon.plugin_queries))
 Addon.log('plugin handle: ' + str(Addon.plugin_handle))

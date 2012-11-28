@@ -45,4 +45,6 @@
     <string id="30104">Transcode</string>
     <string id="30105">Bitrate</string>
     <string id="30106">Server</string>
+	<string id="30107">Email Server</string>
+	<string id="30108">Email Address</string>
 </strings>

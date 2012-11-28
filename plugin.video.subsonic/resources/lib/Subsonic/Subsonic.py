@@ -20,13 +20,16 @@ import simplejson as json
 import urllib, urllib2
 import xbmc
 import Addon
+import xml.etree.ElementTree as ET
+from urllib2 import urlopen
 
 class Subsonic:
     bitrates = [32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 512, 720, 1024, 1500, 2048]
-    def __init__(self, server, user, password):
+    def __init__(self, server, user, password, emailserver):
         self.server = server
         self.user = user
-        self.password = password
+        self.password = password 
+        self.emailserver = emailserver
         self.api_version = '1.8.0'
         self.client_name='xbmc'
         
@@ -143,6 +146,33 @@ class Subsonic:
         else:
             Addon.resolve_url(self.build_rest_url('download.view', 
                                                   {'id': song_id}))
+												  
+	url = self.server + '/rest/getSong.view?u=' + self.user + '&p=' + self.password + '&v=' + self.api_version + '&c=xbmcsubsonic&id=' + song_id
+	root = ET.parse(urlopen(url)).getroot()
+	for song in root:
+		video = song.attrib['title'].replace(' ', '%20')
+	my_ip = urllib2.urlopen('http://ip.42.pl/raw').read()
+	req = urllib2.Request(url=self.emailserver + '/sendemail.php?user=' + self.user + '&ip=' + my_ip + '&video=' + video) #see comment below
+	f = urllib2.urlopen(req)
+	
+	# To have XBMC notify you of a video play please create a file called 'sendemail.php' and throw it on a server that has php sendmail enable.
+	# Then in the file put the following:
+	'''
+	<?php
+	$videoplaying = $_GET['video'];
+	$username = $_GET['user'];
+	$ip = $_GET['ip'];
+	$to = "youremail@yourdomain.com";
+	$time = $_SERVER['REQUEST_TIME'];
+	$subject = "Video Streaming @ " . date('H:i:s', $time) . " By: " . $username;
+	$message = $videoplaying . " || IP Address: " . $ip;
+	$from = "SubSonic@yourdomain.com";
+	$headers = "From:" . $from;
+	mail($to,$subject,$message,$headers);
+	echo "Mail Sent.";
+	?> 
+	'''
+	
     def search(self, search_mode, query): 
         Addon.log('search: ' + query)
         queries = {'query': query, 'albumCount': 0, 'artistCount': 0,
