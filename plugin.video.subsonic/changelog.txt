@@ -1,6 +1,9 @@
+[B]Version 1.0.0[/B]
+- Initial Release
+-- Frodo Beta 1 comptable
+
 [B]Version 0.0.2[/B]
 - Fixed Video Bitrates
 
 [B]Version 0.0.1[/B]
-
 - Initial version

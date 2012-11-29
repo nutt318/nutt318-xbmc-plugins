@@ -15,4 +15,20 @@
         <platform>all</platform>
     </extension>
 </addon>
+
+<addon id="plugin.video.subsonic" version="1.0.0" name="Subsonic" provider-name="nutt318">
+    <requires>
+        <import addon="xbmc.python" version="1.0"/>
+        <import addon="script.module.simplejson" version="2.0.10"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Access your Subsonic server</summary>
+        <description>Provides basic access to your Subsonic server.</description>
+        <disclaimer>You need a Subsonic server to connect to - check addon settings</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
 </addons>

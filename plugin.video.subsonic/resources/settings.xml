@@ -4,7 +4,7 @@
   <category label="30106">
     <setting type="lsep" label="30106" />
 	<setting id="server" type="text" label="30100" default="https://demo.subsonic.com" />
-	<setting id="user" type="text" label="30101" default="guest2" />
+	<setting id="user" type="text" label="30101" default="guest" />
 	<setting id="password" type="text" option="hidden" label="30102" default="guest" />
     <setting type="lsep" label="30103" />
 	<setting id="transcode" type="bool" label="30104" default="true" />

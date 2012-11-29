@@ -34,12 +34,12 @@ class Subsonic:
         self.client_name='xbmc'
         
     def ping(self):
-        Addon.log('ping')
+        xbmc.log('ping')
         payload = self.__get_json('ping.view')
         return payload
         
     def get_music_folders(self):
-        Addon.log('get_music_folders')
+        xbmc.log('get_music_folders')
         payload = self.__get_json('getMusicFolders.view')
         if payload:
             folders = self.listify(payload['musicFolders']['musicFolder'])
@@ -56,7 +56,7 @@ class Subsonic:
             Addon.end_of_directory()
 
     def get_indexes(self, folder_id):
-        Addon.log('get_indexes: ' + folder_id)
+        xbmc.log('get_indexes: ' + folder_id)
         payload = self.__get_json('getIndexes.view', {'musicFolderId': folder_id})
         if payload:
             indexes = payload['indexes'].get('index', False)
@@ -73,14 +73,14 @@ class Subsonic:
                 Addon.show_dialog([Addon.get_string(30030)])
 
     def get_music_directory(self, music_id):
-        Addon.log('get_music_directory: ' + music_id)
+        xbmc.log('get_music_directory: ' + music_id)
         payload = self.__get_json('getMusicDirectory.view', {'id': music_id})
         if payload:
             songs = self.listify(payload['directory']['child'])
             self.display_music_directory(songs)
 
     def get_album_list(self, sort, page=0):
-        Addon.log('get_album_list: ' + sort)
+        xbmc.log('get_album_list: ' + sort)
         payload = self.__get_json('getAlbumList.view', {'type': sort,
                                   'size': 50, 'offset': int(page) * 50})
         if payload:
@@ -105,12 +105,12 @@ class Subsonic:
             Addon.end_of_directory()
     
     def get_playlists(self):
-        Addon.log('get_playlists')
+        xbmc.log('get_playlists')
         payload = self.__get_json('getPlaylists.view')
         if payload:
             playlists = self.listify(payload['playlists']['playlist'])
             total = len(playlists)
-            Addon.log('playlists: ' + str(playlists))
+            xbmc.log('playlists: ' + str(playlists))
             for playlist in playlists:
                 if type(playlist) is dict:
                     Addon.add_directory({'mode': 'playlist', 
@@ -120,14 +120,14 @@ class Subsonic:
             Addon.end_of_directory()
 
     def get_playlist(self, playlist_id):
-        Addon.log('get_playlist: ' + playlist_id)
+        xbmc.log('get_playlist: ' + playlist_id)
         payload = self.__get_json('getPlaylist.view', {'id': playlist_id})
         if payload:
             songs = self.listify(payload['playlist']['entry'])
             self.display_music_directory(songs)
 
     def get_random(self, queries):
-        Addon.log('get_random: ' + str(queries))
+        xbmc.log('get_random: ' + str(queries))
         payload = self.__get_json('getRandomSongs.view', queries)
         if payload:
             if payload.get('randomSongs', False):
@@ -137,7 +137,7 @@ class Subsonic:
                 Addon.show_dialog([Addon.get_string(30010)])
             
     def play(self, song_id):
-        Addon.log('play: ' + song_id)
+        xbmc.log('play: ' + song_id)
         if Addon.get_setting('transcode') == 'true':
             bitrate = self.bitrates[int(Addon.get_setting('bitrate'))]
             Addon.resolve_url(self.build_rest_url('stream.view', 
@@ -174,7 +174,7 @@ class Subsonic:
 	'''
 	
     def search(self, search_mode, query): 
-        Addon.log('search: ' + query)
+        xbmc.log('search: ' + query)
         queries = {'query': query, 'albumCount': 0, 'artistCount': 0,
                    'songCount': 0}
         queries[search_mode + 'Count'] = 999
@@ -194,7 +194,7 @@ class Subsonic:
         url = ''
         if cover_art_id:
             url = self.build_rest_url('getCoverArt.view', {'id': cover_art_id})
-            Addon.log('cover art: ' + url)
+            xbmc.log('cover art: ' + url)
         return url
                       
     def build_rest_url(self, method, queries):
@@ -203,7 +203,7 @@ class Subsonic:
                         'u': self.user, 
                         'p': self.password,
                         'f': 'json'})
-        Addon.log('queries: ' + str(queries))
+        xbmc.log('queries: ' + str(queries))
         query = Addon.build_query(queries)
         return '%s/rest/%s?%s' % (self.server, method, query) 
     
@@ -216,7 +216,7 @@ class Subsonic:
     def __get_json(self, method, queries={}):
         json_response = None
         url = self.build_rest_url(method, queries)
-        Addon.log('getting ' + url)
+        xbmc.log('getting ' + url)
         try:
             response = urllib2.urlopen(url)
             try:
