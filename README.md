@@ -8,4 +8,6 @@ Note: Havent quite figured out the repo/download thing, anyways just download th
 
 Modifying it to better process video streams.
 
-Sorry if something doesnt work right, I'm very new to XBMC Plugin Development. I have only tested this on Eden version of XBMC.
+Sorry if something doesnt work right, I'm very new to XBMC Plugin Development.
+
+This does now work with Frodo!
